@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { Container, Form, Card, Button } from "react-bootstrap";
-
-
 export default function Student() {
-
   // const [id, setId] = useState('');
   // const [name, setName] = useState('');
   // const [address, setAddress] = useState('');
@@ -13,36 +10,33 @@ export default function Student() {
     name: '',
     address: '',
   })
-
   let student = {
     id : state.id,
     name : state.name,
     address : state.address
   }
-
   let textChanged = (event) => {
     const name = event.target.name
     const value = event.target.value
 
     setState({
-      // 
       ...state,[name]:value,
     })
-    // console.log(state);
-    // if(event.target.name==="id"){
-    //   setId(event.target.value);
-    // } else if(event.target.name==="name"){
-    //   setName(event.target.value);
-    // } else if(event.target.name==="address"){
-    //   setAddress(event.target.value);
-    // }
-    // console.log(state);
+
   }
 
   let saveStudent = () => {
+        axios.post("http://localhost:8080/student", student)
+        .then(response => {
+          if(response.data != null){
+            alert('Record added successfully');        
+          }
+        })
+        .catch(error => alert(error));
+        window.location.reload(false);
 
+      }
 
-  }
 
   return (
     <div  className="my-3">
