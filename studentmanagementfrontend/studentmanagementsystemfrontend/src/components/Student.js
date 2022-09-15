@@ -18,13 +18,11 @@ export default function Student() {
   let textChanged = (event) => {
     const name = event.target.name
     const value = event.target.value
-
     setState({
       ...state,[name]:value,
     })
-
+    
   }
-
   let saveStudent = () => {
         axios.post("http://localhost:8080/student", student)
         .then(response => {
@@ -34,12 +32,12 @@ export default function Student() {
         })
         .catch(error => alert(error));
         window.location.reload(false);
-
+        
       }
 
 
   return (
-    <div  className="my-3">
+    <div  className="my-5">
     <Container>
       <Card>
         <Form onSubmit={saveStudent}>
@@ -59,7 +57,7 @@ export default function Student() {
             </Form.Group>
           </Card.Body>
           <Card.Footer>
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Submit
           </Button>
           </Card.Footer>
